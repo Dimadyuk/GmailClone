@@ -1,4 +1,4 @@
-package com.dimadyuk.gmailclone
+package com.dimadyuk.gmailclone.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Help

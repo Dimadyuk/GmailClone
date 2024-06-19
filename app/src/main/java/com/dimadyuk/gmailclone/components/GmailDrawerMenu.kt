@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dimadyuk.gmailclone.DrawerMenuData
+import com.dimadyuk.gmailclone.model.DrawerMenuData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
