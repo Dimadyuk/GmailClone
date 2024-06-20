@@ -64,27 +64,7 @@ fun MailItem(
             .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Card(
-            modifier = modifier
-                .padding(end = 8.dp)
-                .size(40.dp)
-                .clip(CircleShape),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.Gray
-            )
-        ) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = mailData.userName[0].uppercase(),
-                    textAlign = TextAlign.Center,
-                    modifier = modifier
-                        .padding(8.dp),
-                )
-            }
-        }
+        IconWithFirstLetter(modifier, mailData.userName)
         Column(
             modifier = Modifier.weight(1f)
         ) {
@@ -125,6 +105,34 @@ fun MailItem(
         }
     }
     HorizontalDivider()
+}
+
+@Composable
+fun IconWithFirstLetter(
+    modifier: Modifier = Modifier,
+    userName: String
+) {
+    Card(
+        modifier = modifier
+            .padding(end = 8.dp)
+            .size(40.dp)
+            .clip(CircleShape),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Gray
+        )
+    ) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = userName[0].uppercase(),
+                textAlign = TextAlign.Center,
+                modifier = modifier
+                    .padding(8.dp),
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)

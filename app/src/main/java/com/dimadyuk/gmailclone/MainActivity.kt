@@ -16,6 +16,8 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.dimadyuk.gmailclone.components.GmailDrawerMenu
@@ -37,6 +39,7 @@ class MainActivity : ComponentActivity() {
                 val listScrollState = rememberLazyListState()
                 val scope = rememberCoroutineScope()
 
+                val openDialog = remember { mutableStateOf(false) }
 
                 ModalNavigationDrawer(
                     drawerState = drawerState,
@@ -57,7 +60,8 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier
                                     .padding(top = paddingTop),
                                 drawerState = drawerState,
-                                scope = scope
+                                scope = scope,
+                                openDialog = openDialog
                             )
                         },
                         bottomBar = {

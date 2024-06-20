@@ -2,6 +2,7 @@ package com.dimadyuk.gmailclone.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,9 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,15 +42,13 @@ fun HomeAppBar(
     modifier: Modifier = Modifier,
     drawerState: DrawerState,
     scope: CoroutineScope,
+    openDialog: MutableState<Boolean>
 ) {
     Box(modifier = modifier.padding(10.dp)) {
         Card(
             modifier = Modifier
                 .requiredHeight(50.dp),
             shape = RoundedCornerShape(10.dp),
-//            elevation = CardDefaults.cardElevation(
-//                defaultElevation = 6.dp,
-//            ),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -74,11 +76,17 @@ fun HomeAppBar(
                     modifier = Modifier
                         .size(50.dp)
                         .background(Color.Transparent)
-                        .clip(CircleShape),
+                        .clip(CircleShape)
+                        .clickable {
+                            openDialog.value = true
+                        },
                     painter = painterResource(id = R.drawable.finger),
                     contentDescription = null
                 )
             }
+        }
+        if (openDialog.value) {
+            AccountsDialog(openDialog = openDialog)
         }
     }
 }
@@ -91,7 +99,8 @@ fun HomeAppBarPreview() {
         val scope = rememberCoroutineScope()
         HomeAppBar(
             drawerState = drawerState,
-            scope = scope
+            scope = scope,
+            openDialog = remember { mutableStateOf(false) }
         )
     }
 }
